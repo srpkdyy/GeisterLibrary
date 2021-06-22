@@ -359,7 +359,7 @@ int main(int argc, char** argv){
             }
         }
     }
-    if(outputLevel > 0){
+    if(outputLevel > -1){
         std::cout << dllName1 << " vs " << dllName2 << std::endl;
         std::cout << "Match: " << match << std::endl;
         std::cout << win1st << ":" << win2nd << ":" << draw << " - ";
