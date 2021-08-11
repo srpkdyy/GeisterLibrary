@@ -31,11 +31,11 @@ public:
           Unit u = move.unit;
           if (u.isBlue()) {
             if (u.x() == 0 && u.y() == 0) return Hand{u, 'W'};
-            if (u.x() == 5 && u.y() == 5) return Hand{u, 'E'};
+            if (u.x() == 5 && u.y() == 0) return Hand{u, 'E'};
           }
         }
 
-        int nPlay = 100;
+        int nPlay = 10000;
         int maxScore = -nPlay - 1;
         for (const auto& move : legalMoves) {
           Geister node = game;
@@ -48,11 +48,6 @@ public:
             bestHand = move;
           }
         }
-
-        /*
-        std::uniform_int_distribution<int> selector(0, legalMoves.size() - 1);
-        return legalMoves[selector(mt)];
-        */
         return bestHand;
     }
 
