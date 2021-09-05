@@ -93,7 +93,7 @@ public:
 
     std::vector<double> rewards(legalMoves.size(), 0.0);
     for (int i = 0; i < legalMoves.size(); i++) {
-      rewards[i] += simulators[i].run(100);
+      rewards[i] += simulators[i].run(5000);
     }
 
     int indexMax = 0;

@@ -56,9 +56,8 @@ std::vector<std::string> Simulator::getLegalPattern() const
 }
     
 // 未判明の相手駒色を適当に仮定
-std::string Simulator::getRandomPattern() const
+std::string Simulator::getRandomPattern(const std::vector<std::string>& legalPattern) const
 {
-    std::vector<std::string> legalPattern = getLegalPattern();
     std::uniform_int_distribution<int> selector(0, legalPattern.size() - 1);
     return legalPattern[selector(mt)];
 }
@@ -126,9 +125,11 @@ double Simulator::playout(){
 
 double Simulator::run(const size_t count){
     double result = 0.0;
+    auto legalPattern = getLegalPattern();
+
     for(size_t i = 0; i < count; ++i){
         current = root;
-        setColor(getRandomPattern());
+        setColor(getRandomPattern(legalPattern));
         // current.printBoard();
         // std::cout << current.result() << "\n";
         // setColorRandom();

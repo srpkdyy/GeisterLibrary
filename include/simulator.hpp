@@ -24,7 +24,7 @@ public:
     
     virtual std::vector<std::string> getLegalPattern() const;
     // 未判明の相手駒色を適当に仮定
-    virtual std::string getRandomPattern() const;
+    virtual std::string getRandomPattern(const std::vector<std::string>&) const;
 
     virtual void setColor(std::string_view ptn);
     
