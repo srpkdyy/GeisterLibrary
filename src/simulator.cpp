@@ -127,13 +127,14 @@ double Simulator::run(const size_t count){
     double result = 0.0;
     auto legalPattern = getLegalPattern();
 
-    for(size_t i = 0; i < count; ++i){
-        current = root;
-        setColor(getRandomPattern(legalPattern));
-        // current.printBoard();
-        // std::cout << current.result() << "\n";
-        // setColorRandom();
-        result += playout();
+    #pragma omp parallel
+    {
+        #pragma omp for reduction(+:result)
+        for(size_t i = 0; i < count; i++){
+            current = root;
+            setColor(getRandomPattern(legalPattern));
+            result += playout();
+        }
     }
     return result;
 }
